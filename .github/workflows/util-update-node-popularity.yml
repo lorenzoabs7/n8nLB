@@ -1,9 +1,6 @@
 name: 'Util: Update Node Popularity'
 
 on:
-  schedule:
-    # Run every Monday at 00:00 UTC
-    - cron: '0 0 * * 1'
   workflow_dispatch: # Allow manual trigger for testing
 
 permissions:
@@ -14,7 +11,7 @@ jobs:
   update-popularity:
     if: |
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'schedule' && github.repository == 'n8n-io/n8n')
+      false
     runs-on: ubuntu-latest
     outputs:
       pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}
